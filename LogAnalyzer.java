@@ -42,4 +42,14 @@ public class LogAnalyzer
         }
         return ipCount;
     }
+
+    public int mostNumberVisitsByIP(HashMap<String,Integer> ipCount) {
+         int max = 0;
+         for (String ipAddr : ipCount.keySet()) {
+             if (ipCount.get(ipAddr) > max) {
+                 max = ipCount.get(ipAddr);
+             }
+         }
+         return max;
+    }
 }

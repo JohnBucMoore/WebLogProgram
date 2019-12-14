@@ -16,22 +16,33 @@ public class Tester
         LogEntry le2 = new LogEntry("1.2.100.4", new Date(), "example request 2", 300, 400);
         System.out.println(le2);
     }
-    
+
+    public void getTestFiles(LogAnalyzer la) {
+        la.readFile("short-test_log");
+        //la.readFile("weblog2-short_log");
+        //la.readFile("weblog3-short_log");
+    }
+
     public void testLogAnalyzer() {
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("short-test_log");
+        getTestFiles(la);
         la.printAll();
     }
 
     public void testCountVisitsPerIP() {
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("short-test_log");
-        //la.readFile("weblog2-short_log");
-        //la.readFile("weblog3-short_log");
+        getTestFiles(la);
         HashMap<String, Integer> ipCount = la.countVisitsPerIP();
         for (String ipAddr : ipCount.keySet()) {
             System.out.println(ipCount.get(ipAddr)+"\t"+ipAddr);
         }
+    }
+
+    public void testMostNumberVisitsByIP() {
+        LogAnalyzer la = new LogAnalyzer();
+        getTestFiles(la);
+        int num = la.mostNumberVisitsByIP(la.countVisitsPerIP());
+        System.out.println(num);
     }
 
     public static void main(String[] args) {
@@ -39,5 +50,6 @@ public class Tester
         t.testLogEntry();
         t.testLogAnalyzer();
         t.testCountVisitsPerIP();
+        t.testMostNumberVisitsByIP();
     }
 }
