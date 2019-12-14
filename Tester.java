@@ -63,6 +63,12 @@ public class Tester
         }
     }
 
+    public void testDayWithMostIPVisits() {
+        LogAnalyzer la = new LogAnalyzer();
+        getTestFiles(la);
+        System.out.println(la.dayWithMostIPVisits(la.iPsForDays()));
+    }
+
     public static void main(String[] args) {
         Tester t = new Tester();
         t.testLogEntry();
@@ -71,5 +77,6 @@ public class Tester
         t.testMostNumberVisitsByIP();
         t.testIPsMostVisits();
         t.testIPsForDays();
+        t.testDayWithMostIPVisits();
     }
 }

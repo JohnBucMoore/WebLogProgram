@@ -81,11 +81,23 @@ public class LogAnalyzer
                  ips.add(ip);
                  dateIPs.put(date, ips);
              } else {
-                 if (! dateIPs.get(date).contains(ip)) {
+                 if (! dateIPs.get(date).contains(ip)) { //remove this condition to count visits regardless of IP
                      dateIPs.get(date).add(ip);
                  }
              }
          }
          return dateIPs;
+    }
+
+    public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> dateIPs) {
+         int max = 0;
+         String dayWithMostVisits = "";
+         for (String date : dateIPs.keySet()) {
+             if (dateIPs.get(date).size() > max) {
+                 max = dateIPs.get(date).size();
+                 dayWithMostVisits = date;
+             }
+         }
+         return dayWithMostVisits;
     }
 }
