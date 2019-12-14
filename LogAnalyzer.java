@@ -63,4 +63,29 @@ public class LogAnalyzer
          }
          return ips;
     }
+
+    private String getDate(LogEntry le) {
+        String date = le.getAccessTime().toString();
+        String month = date.substring(4, 7);
+        String day = date.substring(8, 10).trim();
+        return month+' '+day;
+    }
+
+    public HashMap<String, ArrayList<String>> iPsForDays() {
+         HashMap<String,ArrayList<String>> dateIPs = new HashMap<>();
+         for (LogEntry le : records) {
+             String date = getDate(le);
+             String ip = le.getIpAddress();
+             if (! dateIPs.containsKey(date)) {
+                 ArrayList<String> ips = new ArrayList<>();
+                 ips.add(ip);
+                 dateIPs.put(date, ips);
+             } else {
+                 if (! dateIPs.get(date).contains(ip)) {
+                     dateIPs.get(date).add(ip);
+                 }
+             }
+         }
+         return dateIPs;
+    }
 }

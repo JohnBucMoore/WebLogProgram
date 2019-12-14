@@ -54,6 +54,15 @@ public class Tester
         }
     }
 
+    public void testIPsForDays() {
+        LogAnalyzer la = new LogAnalyzer();
+        getTestFiles(la);
+        HashMap<String, ArrayList<String>> dateIPs = la.iPsForDays();
+        for (String date : dateIPs.keySet()) {
+            System.out.println(date+"\t"+dateIPs.get(date));
+        }
+    }
+
     public static void main(String[] args) {
         Tester t = new Tester();
         t.testLogEntry();
@@ -61,5 +70,6 @@ public class Tester
         t.testCountVisitsPerIP();
         t.testMostNumberVisitsByIP();
         t.testIPsMostVisits();
+        t.testIPsForDays();
     }
 }
