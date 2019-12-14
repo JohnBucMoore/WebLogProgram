@@ -81,9 +81,9 @@ public class LogAnalyzer
                  ips.add(ip);
                  dateIPs.put(date, ips);
              } else {
-                 if (! dateIPs.get(date).contains(ip)) { //remove this condition to count visits regardless of IP
+                 // if (! dateIPs.get(date).contains(ip)) { add this condition to count visits regardless of IP
                      dateIPs.get(date).add(ip);
-                 }
+                 //}
              }
          }
          return dateIPs;
@@ -99,5 +99,23 @@ public class LogAnalyzer
              }
          }
          return dayWithMostVisits;
+    }
+
+    public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> dateIPs, String date) {
+        ArrayList<String> ipsMostVisitsOnDay = new ArrayList<>();
+         for (String d : dateIPs.keySet()) {
+             if (d.equals(date)) {
+                 HashMap<String, Integer> ipCount = new HashMap<>();
+                 for (String ip : dateIPs.get(d)) {
+                     if (! ipCount.containsKey(ip)) {
+                         ipCount.put(ip, 1);
+                     } else {
+                         ipCount.put(ip, ipCount.get(ip) + 1);
+                     }
+                 }
+                 ipsMostVisitsOnDay = iPsMostVisits(ipCount);
+             }
+         }
+         return ipsMostVisitsOnDay;
     }
 }

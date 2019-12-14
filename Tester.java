@@ -69,6 +69,12 @@ public class Tester
         System.out.println(la.dayWithMostIPVisits(la.iPsForDays()));
     }
 
+    public void testIPsWithMostVisitsOnDay() {
+        LogAnalyzer la = new LogAnalyzer();
+        getTestFiles(la);
+        System.out.println(la.iPsWithMostVisitsOnDay(la.iPsForDays(), "Sep 30"));
+    }
+
     public static void main(String[] args) {
         Tester t = new Tester();
         t.testLogEntry();
@@ -78,5 +84,6 @@ public class Tester
         t.testIPsMostVisits();
         t.testIPsForDays();
         t.testDayWithMostIPVisits();
+        t.testIPsWithMostVisitsOnDay();
     }
 }
