@@ -45,11 +45,21 @@ public class Tester
         System.out.println(num);
     }
 
+    public void testIPsMostVisits() {
+        LogAnalyzer la = new LogAnalyzer();
+        getTestFiles(la);
+        ArrayList<String> ips = la.iPsMostVisits(la.countVisitsPerIP());
+        for (String ip : ips) {
+            System.out.println(ip);
+        }
+    }
+
     public static void main(String[] args) {
         Tester t = new Tester();
         t.testLogEntry();
         t.testLogAnalyzer();
         t.testCountVisitsPerIP();
         t.testMostNumberVisitsByIP();
+        t.testIPsMostVisits();
     }
 }

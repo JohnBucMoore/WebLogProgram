@@ -52,4 +52,15 @@ public class LogAnalyzer
          }
          return max;
     }
+
+    public ArrayList<String> iPsMostVisits(HashMap<String,Integer> ipCount) {
+         ArrayList<String> ips = new ArrayList<>();
+         int max = mostNumberVisitsByIP(ipCount);
+         for (String ipAddr : ipCount.keySet()) {
+             if (ipCount.get(ipAddr).equals(max)) {
+                 ips.add(ipAddr);
+             }
+         }
+         return ips;
+    }
 }
